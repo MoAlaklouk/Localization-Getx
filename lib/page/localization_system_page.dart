@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 import '../provider/locale_provider.dart';
 import '../widget/language_picker_widget.dart';
@@ -16,7 +16,7 @@ class _LocalizationSystemPageState extends State<LocalizationSystemPage> {
     super.initState();
 
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      final provider = Provider.of<LocaleProvider>(context, listen: false);
+      final provider = Get.find<LocaleProvider>();
 
       provider.clearLocale();
     });

@@ -1,48 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:localization_app/provider/locale_provider.dart';
-import 'package:provider/provider.dart';
 
 import 'Localization/app_localization.dart';
 import 'page/localization_app_page.dart';
 
-
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-
-  static GlobalKey<NavigatorState> navigatorKey =
-  GlobalKey<NavigatorState>();
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   // This widget is the root of your application.
   @override
-    Widget build(BuildContext context) => ChangeNotifierProvider(
-      create: (context) => LocaleProvider(),
-      builder: (context, child) {
-        final provider = Provider.of<LocaleProvider>(context);
-
-        return MaterialApp(
-          navigatorKey: navigatorKey,
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            scaffoldBackgroundColor: Colors.white,
-            primaryColor: Colors.deepPurpleAccent,
-          ),
-          locale: provider.locale,
-          // locale: Locale('en'),
-          supportedLocales: AppLocalization.all,
-          localizationsDelegates: AppLocalization.localizationsDelegates,
-          home: MainPage(),
-        );
-      },
-    );
-
-  }
-
+  Widget build(BuildContext context) => GetBuilder<LocaleProvider>(
+        // create: (context) => LocaleProvider(),
+        // builder: (context, child) {
+        //   final provider = Provider.of<LocaleProvider>(context);
+        init: LocaleProvider(),
+        builder: (controller) {
+          return MaterialApp(
+            navigatorKey: navigatorKey,
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              scaffoldBackgroundColor: Colors.white,
+              primaryColor: Colors.deepPurpleAccent,
+            ),
+            locale: controller.locale,
+            // locale: Locale('en'),
+            supportedLocales: AppLocalization.all,
+            localizationsDelegates: AppLocalization.localizationsDelegates,
+            home: MainPage(),
+          );
+        },
+      );
+}
 
 class MainPage extends StatefulWidget {
   @override
@@ -54,7 +48,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    body: LocalizationAppPage(),
-  );
-
+        body: LocalizationAppPage(),
+      );
 }

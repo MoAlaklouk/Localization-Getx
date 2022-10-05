@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../l10n/l10n.dart';
 
 
-class LocaleProvider extends ChangeNotifier {
+class LocaleProvider extends GetxController {
    Locale? locale;
 
   void setLocale(Locale locale) {
@@ -11,11 +12,11 @@ class LocaleProvider extends ChangeNotifier {
 
 
     this.locale = locale;
-    notifyListeners();
+    update();
   }
 
   void clearLocale() {
     locale = null;
-    notifyListeners();
+    update();
   }
 }

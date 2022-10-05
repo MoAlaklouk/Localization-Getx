@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/a7mdz/localization_app/BuildConfig.java
+ com.a7mdz.localization_app.BuildConfig
