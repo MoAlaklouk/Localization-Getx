@@ -14,6 +14,10 @@ class MyApp extends StatelessWidget {
 
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   // This widget is the root of your application.
+
+  ///if you want change MaterialApp to GetMaterialApp
+  ///you need to change setLocale to Get.updateLocale();
+  
   @override
   Widget build(BuildContext context) => GetBuilder<LocaleProvider>(
         // create: (context) => LocaleProvider(),
@@ -21,6 +25,7 @@ class MyApp extends StatelessWidget {
         //   final provider = Provider.of<LocaleProvider>(context);
         init: LocaleProvider(),
         builder: (controller) {
+          
           return MaterialApp(
             navigatorKey: navigatorKey,
             debugShowCheckedModeBanner: false,
